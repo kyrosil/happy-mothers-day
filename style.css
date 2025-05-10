@@ -3,11 +3,11 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, #d4a4a4, #a4b8d4); /* Daha koyu pastel tonlar */
+    background: linear-gradient(135deg, #d4a4a4, #a4b8d4);
     font-family: 'Georgia', serif;
     color: #fff;
     text-align: center;
-    overflow: hidden;
+    overflow-y: auto; /* Sayfayı kaydırılabilir yap */
     position: relative;
 }
 .header {
@@ -26,7 +26,7 @@ body {
 .header p {
     margin: 0;
     font-size: 0.9rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Daha belirgin gölge */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 .language-switch {
     position: fixed;
@@ -60,15 +60,15 @@ body {
     line-height: 1.6;
     opacity: 0;
     margin: 0.5rem 0;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Daha belirgin gölge */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 h1 {
     font-size: 1.8rem;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5); /* Daha belirgin gölge */
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
     animation: fadeIn 2s ease-in-out;
     margin: 0.5rem 0;
 }
-.start-btn, #claimReward, #submitAddress {
+.start-btn, #claimReward {
     padding: 0.8rem 1.5rem;
     font-size: 1.1rem;
     color: #fff;
@@ -81,8 +81,24 @@ h1 {
     margin: 1rem 0;
     min-width: 200px;
 }
-.start-btn:hover, #claimReward:hover, #submitAddress:hover {
+.start-btn:hover, #claimReward:hover {
     transform: scale(1.1);
+}
+.dark-btn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    color: #fff;
+    background: #4a2c2a; /* Koyu kahverengi */
+    border: 2px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    margin: 1rem 0;
+    min-width: 200px;
+}
+.dark-btn:hover {
+    transform: scale(1.1);
+    background: #6b4e4a; /* Daha koyu hover efekti */
 }
 .game {
     width: 100%;
@@ -95,7 +111,7 @@ h1 {
 .score {
     position: absolute;
     top: 1rem;
-    left: 1rem;
+    right: 1rem; /* Sağ üst köşeye taşı */
     font-size: 1.2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     z-index: 2;
@@ -113,7 +129,7 @@ h1 {
     animation: zoomInOut 3s ease-in-out;
     z-index: 2;
 }
-.reward, .claim {
+.reward, .claim, .final-message-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -128,6 +144,7 @@ h1 {
     width: 90%;
     max-width: 400px;
     z-index: 2;
+    text-align: center;
 }
 .gift-box {
     width: 100px;
@@ -195,7 +212,7 @@ h1 {
     .header p { font-size: 0.8rem; }
     h1 { font-size: 1.5rem; }
     .content p { font-size: 1rem; }
-    .start-btn, #claimReward, #submitAddress { font-size: 1rem; padding: 0.6rem 1.2rem; }
+    .start-btn, #claimReward, .dark-btn { font-size: 1rem; padding: 0.6rem 1.2rem; }
     .score { font-size: 1rem; }
     .reward h2, .claim h2 { font-size: 1.3rem; }
     .message { font-size: 0.9rem; }
