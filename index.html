@@ -7,30 +7,37 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="language-switch">
+        <button id="langBtn">English</button>
+    </div>
     <div class="intro" id="intro">
-        <h1>Canım Annem ve Babam İçin…</h1>
-        <p>
-            9 yıl… Annem gideli.<br>
-            14 yıl… Babam gideli.<br>
-            Bir insanın kalbinde ne çok şey birikir, biliyor musunuz? Özlem, kırık cümleler, yarım kalmış sarılmalar, bir daha hiç söylenemeyen sözler… Ama ben hâlâ her gün onların sevgisini, hatırasını içimde taşıyorum.<br><br>
-
-            Bugün Anneler Günü. Ve ben, annemin ve babamın ruhuna buradan bir ışık göndermek istiyorum. Onların anısına, küçük bir iyilik tohumu ekmek istiyorum. Sitemize onlar için basit bir oyun ekledik. Bu oyunu tamamlayan 300 kişiye 100 USDT ödül vereceğiz. Ama aslında mesele ödül değil…<br><br>
-
-            Bu, bir anı bırakmak.<br>
-            Bu, onların ardında kalan dünyaya bir sevgi izi bırakmak.<br>
-            Bu, annemin merhametinden, babamın şefkatinden bana kalan her şeyi bir anlığa da olsa paylaşabilmek.<br><br>
-
-            Bana bu yolculukta eşlik eden, kalbini açan herkese sonsuz teşekkürler… Sizlerle birlikte, onların anısını biraz daha güzelleştirmek benim için her şeyden değerli.<br><br>
-
-            Tüm annelerimizin Anneler Günü kutlu olsun… Ve tüm kayıplarımıza, kalbimizden bir selam olsun.
-        </p>
-        <button id="startGame" class="start-btn">Oyuna Başla</button>
+        <h1 data-tr="Canım Annem ve Babam İçin…" data-en="For My Dearest Mom and Dad…">Canım Annem ve Babam İçin…</h1>
+        <div class="content">
+            <p data-tr="9 yıl… Annem gideli." data-en="9 years… since my mom passed away.">9 yıl… Annem gideli.</p>
+            <p data-tr="14 yıl… Babam gideli." data-en="14 years… since my dad left us.">14 yıl… Babam gideli.</p>
+            <p data-tr="Bir insanın kalbinde ne çok şey birikir, biliyor musunuz? Özlem, kırık cümleler, yarım kalmış sarılmalar, bir daha hiç söylenemeyen sözler… Ama ben hâlâ her gün onların sevgisini, hatırasını içimde taşıyorum." data-en="Do you know how much accumulates in a person’s heart? Longing, broken sentences, unfinished hugs, words that can never be said again… Yet, I still carry their love and memories in my heart every day.">Bir insanın kalbinde ne çok şey birikir, biliyor musunuz? Özlem, kırık cümleler, yarım kalmış sarılmalar, bir daha hiç söylenemeyen sözler… Ama ben hâlâ her gün onların sevgisini, hatırasını içimde taşıyorum.</p>
+            <p data-tr="Bugün Anneler Günü. Ve ben, annemin ve babamın ruhuna buradan bir ışık göndermek istiyorum. Onların anısına, küçük bir iyilik tohumu ekmek istiyorum. Sitemize onlar için basit bir oyun ekledik. Bu oyunu tamamlayan 300 kişiye 100 USDT ödül vereceğiz. Ama aslında mesele ödül değil…" data-en="Today is Mother’s Day. And I want to send a light to my mom’s and dad’s souls from here. I want to plant a small seed of kindness in their memory. We’ve added a simple game to our site for them. The first 300 people who complete this game will receive a 100 USDT reward. But the reward isn’t the real point…">Bugün Anneler Günü. Ve ben, annemin ve babamın ruhuna buradan bir ışık göndermek istiyorum. Onların anısına, küçük bir iyilik tohumu ekmek istiyorum. Sitemize onlar için basit bir oyun ekledik. Bu oyunu tamamlayan 300 kişiye 100 USDT ödül vereceğiz. Ama aslında mesele ödül değil…</p>
+            <p data-tr="Bu, bir anı bırakmak." data-en="This is about leaving a memory.">Bu, bir anı bırakmak.</p>
+            <p data-tr="Bu, onların ardında kalan dünyaya bir sevgi izi bırakmak." data-en="This is about leaving a trace of love in the world they left behind.">Bu, onların ardında kalan dünyaya bir sevgi izi bırakmak.</p>
+            <p data-tr="Bu, annemin merhametinden, babamın şefkatinden bana kalan her şeyi bir anlığa da olsa paylaşabilmek." data-en="This is about sharing, even for a moment, everything I inherited from my mom’s compassion and my dad’s kindness.">Bu, annemin merhametinden, babamın şefkatinden bana kalan her şeyi bir anlığa da olsa paylaşabilmek.</p>
+            <p data-tr="Bana bu yolculukta eşlik eden, kalbini açan herkese sonsuz teşekkürler… Sizlerle birlikte, onların anısını biraz daha güzelleştirmek benim için her şeyden değerli." data-en="Endless thanks to everyone who joins me on this journey and opens their heart… Making their memory even more beautiful together with you means the world to me.">Bana bu yolculukta eşlik eden, kalbini açan herkese sonsuz teşekkürler… Sizlerle birlikte, onların anısını biraz daha güzelleştirmek benim için her şeyden değerli.</p>
+            <p data-tr="Tüm annelerimizin Anneler Günü kutlu olsun… Ve tüm kayıplarımıza, kalbimizden bir selam olsun." data-en="Happy Mother’s Day to all our mothers… And a heartfelt greeting to all those we’ve lost.">Tüm annelerimizin Anneler Günü kutlu olsun… Ve tüm kayıplarımıza, kalbimizden bir selam olsun.</p>
+        </div>
+        <button id="startGame" class="start-btn" data-tr="Oyuna Başla" data-en="Start Game">Oyuna Başla</button>
     </div>
     <div class="game" id="game" style="display: none;">
-        <div class="score">Toplanan Kalpler: <span id="score">0</span>/10</div>
+        <div class="score" data-tr="Toplanan Kalpler: " data-en="Hearts Collected: ">Toplanan Kalpler: <span id="score">0</span>/15</div>
+        <div class="message" id="message" style="display: none;"></div>
         <div class="reward" id="reward" style="display: none;">
-            <h2>Tebrikler!</h2>
-            <p>Anneme ve babama ithafen, 100 USDT ödül kazandın! Bu, 300 kişiye ulaştırılacak bir iyilik tohumu. Onların anısına teşekkür ederim. 🤍</p>
+            <h2 data-tr="Tebrikler!" data-en="Congratulations!">Tebrikler!</h2>
+            <p data-tr="Anneme ve babama ithafen, 100 USDT ödül kazandın! Bu, 300 kişiye ulaştırılacak bir iyilik tohumu. Onların anısına teşekkür ederim. 🤍" data-en="In memory of my mom and dad, you’ve won a 100 USDT reward! This is a seed of kindness to be shared with 300 people. Thank you for honoring their memory. 🤍">Anneme ve babama ithafen, 100 USDT ödül kazandın! Bu, 300 kişiye ulaştırılacak bir iyilik tohumu. Onların anısına teşekkür ederim. 🤍</p>
+            <button id="claimReward" data-tr="Ödülü Al" data-en="Claim Reward">Ödülü Al</button>
+        </div>
+        <div class="claim" id="claim" style="display: none;">
+            <h2 data-tr="Teşekkürler!" data-en="Thank You!">Teşekkürler!</h2>
+            <p data-tr="Annemin ve babamın anısına bu oyunu oynadığın için çok mutluyum. 100 USDT ödülün, onların ruhuna bir hediye oldu. Lütfen USDT adresini aşağıya gir, ödülün 24 saat içinde gönderilecek. Kalbinin güzelliği için sonsuz teşekkürler… 🤍" data-en="I’m so happy you played this game in memory of my mom and dad. Your 100 USDT reward is a gift to their souls. Please enter your USDT address below, and your reward will be sent within 24 hours. Endless thanks for your beautiful heart… 🤍">Annemin ve babamın anısına bu oyunu oynadığın için çok mutluyum. 100 USDT ödülün, onların ruhuna bir hediye oldu. Lütfen USDT adresini aşağıya gir, ödülün 24 saat içinde gönderilecek. Kalbinin güzelliği için sonsuz teşekkürler… 🤍</p>
+            <input type="text" id="usdtAddress" placeholder="USDT Address">
+            <button id="submitAddress" data-tr="Gönder" data-en="Submit">Gönder</button>
         </div>
     </div>
     <script src="script.js"></script>
