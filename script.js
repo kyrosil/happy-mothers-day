@@ -49,6 +49,43 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    const specialMessages = {
+        tr: "Annemin ruhu için bir Fatiha…",
+        en: "A Fatiha for my mom’s soul…"
+    };
+
+    function typeWriter(element, text, speed, callback) {
+        let i = 0;
+        element.textContent = '';
+        element.style.opacity = 1;
+        function type() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(type, speed);
+            } else if (callback) {
+                callback();
+            }
+        }
+        type();
+    }
+
+    function animateText() {
+        const paragraphs = document.querySelectorAll('.content p');
+        let index = 0;
+        function nextParagraph() {
+            if (index < paragraphs.length) {
+                const text = paragraphs[index].getAttribute(`data-${currentLang}`);
+                typeWriter(paragraphs[index], text, 50, () => {
+                    index++;
+                    nextParagraph();
+                });
+            }
+        }
+        paragraphs.forEach(p => p.style.opacity = 0);
+        nextParagraph();
+    }
+
     function updateLanguage() {
         document.querySelectorAll('[data-tr]').forEach(element => {
             element.innerHTML = element.getAttribute(`data-${currentLang}`);
@@ -57,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const baseText = element.getAttribute(`data-${currentLang}`);
             element.innerHTML = `${baseText} <span id="score">${score}</span>/15`;
         });
+        animateText();
     }
 
     langButton.addEventListener('click', () => {
@@ -64,6 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
         langButton.textContent = currentLang === 'tr' ? 'English' : 'Türkçe';
         updateLanguage();
     });
+
+    for (let i = 0; i < 20; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star-dust');
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.animationDelay = `${Math.random() * 8}s`;
+        document.body.appendChild(star);
+    }
 
     for (let i = 0; i < 10; i++) {
         const light = document.createElement('div');
@@ -73,6 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
         light.style.animationDelay = `${Math.random() * 3}s`;
         document.body.appendChild(light);
     }
+
+    animateText();
 
     startButton.addEventListener('click', () => {
         intro.style.display = 'none';
@@ -87,14 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
             heart.style.left = `${Math.random() * (window.innerWidth - 30)}px`;
             heart.style.top = `${Math.random() * (window.innerHeight - 30)}px`;
             heart.style.animationDelay = `${Math.random() * 2}s`;
+            const colors = ['#f8bbd0', '#bbdefb', '#d1c4e9'];
+            heart.style.background = `url('https://img.icons8.com/emoji/30/red-heart.png') no-repeat center, ${colors[Math.floor(Math.random() * colors.length)]}`;
+            heart.style.backgroundSize = 'cover';
             document.body.appendChild(heart);
 
             heart.addEventListener('click', () => {
                 heart.remove();
                 score++;
                 scoreDisplay.textContent = score;
-                const randomMessage = messages[currentLang][Math.floor(Math.random() * messages[currentLang].length)];
-                messageDisplay.textContent = randomMessage;
+                const message = score % 5 === 0 ? specialMessages[currentLang] : messages[currentLang][Math.floor(Math.random() * messages[currentLang].length)];
+                messageDisplay.textContent = message;
                 messageDisplay.style.display = 'block';
                 if (score >= maxScore) {
                     showReward();
@@ -119,6 +170,15 @@ document.addEventListener('DOMContentLoaded', () => {
     function showReward() {
         document.querySelectorAll('.heart').forEach(heart => heart.remove());
         reward.style.display = 'block';
+        for (let i = 0; i < 20; i++) {
+            const burst = document.createElement('div');
+            burst.classList.add('light');
+            burst.style.left = '50%';
+            burst.style.top = '50%';
+            burst.style.animation = 'lightBurst 1s ease-in-out';
+            burst.style.animationDelay = `${i * 0.1}s`;
+            document.body.appendChild(burst);
+        }
         for (let i = 0; i < 20; i++) {
             const heart = document.createElement('div');
             heart.classList.add('heart');
