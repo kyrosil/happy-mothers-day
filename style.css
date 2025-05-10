@@ -18,13 +18,13 @@ body {
     z-index: 1000;
 }
 .logo {
-    width: 100px;
+    width: 80px;
     height: auto;
     margin: 0.5rem 0;
 }
 .header p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 .language-switch {
@@ -47,7 +47,7 @@ body {
     background: rgba(255, 255, 255, 0.4);
 }
 .intro {
-    padding: 6rem 1rem 1rem;
+    padding: 5rem 1rem 1rem;
     width: 90%;
     max-width: 500px;
     margin: 0 auto;
@@ -59,7 +59,7 @@ body {
     margin: 0.5rem 0;
 }
 h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
     animation: fadeIn 2s ease-in-out;
     margin: 0.5rem 0;
@@ -183,8 +183,8 @@ h1 {
 }
 @media (max-width: 600px) {
     .header { padding: 0.3rem 0; }
-    .logo { width: 80px; }
-    .header p { font-size: 0.9rem; }
+    .logo { width: 60px; }
+    .header p { font-size: 0.8rem; }
     h1 { font-size: 1.5rem; }
     .content p { font-size: 1rem; }
     .start-btn, #claimReward, #submitAddress { font-size: 1rem; padding: 0.6rem 1.2rem; }
