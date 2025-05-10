@@ -3,12 +3,69 @@ document.addEventListener('DOMContentLoaded', () => {
     const game = document.getElementById('game');
     const startButton = document.getElementById('startGame');
     const scoreDisplay = document.getElementById('score');
+    const messageDisplay = document.getElementById('message');
     const reward = document.getElementById('reward');
+    const claim = document.getElementById('claim');
+    const claimButton = document.getElementById('claimReward');
+    const langButton = document.getElementById('langBtn');
     let score = 0;
-    const maxScore = 10;
+    const maxScore = 15;
+    let currentLang = 'tr';
 
-    // Işık efektleri
-    for (let i = 0; i < 8; i++) {
+    const messages = {
+        tr: [
+            "Annemin ruhuna bir dua, bu kalp senin için.",
+            "9 yıl oldu, ama annemin sevgisi hep içimde.",
+            "Bu kalp, annemin hayrına bir iyilik tohumu.",
+            "Annemin duaları sana da güç versin.",
+            "Her kalp, annemin ruhuna gönderilen bir Fatiha.",
+            "Annemin anısına, kalbin sevgiyle dolsun.",
+            "Bu hediye, annemin merhametinin bir yansıması.",
+            "Annemin gidişinden beri, dualarım onunla.",
+            "Her kalp atışı, annemin ruhuna bir selam.",
+            "Annemin anısına, bu iyilik sana ulaşsın.",
+            "Annemin sevgisi, 9 yıl sonra bile yol gösteriyor.",
+            "Bu kalp, annemin ruhuna bir ışık olsun.",
+            "Annemin hayır duası hepimizin üzerinde.",
+            "Her kalp, annemin anısına bir sadaka-i cariye.",
+            "Annemin ruhu için, bu sevgi sana hediye."
+        ],
+        en: [
+            "A prayer for my mom’s soul, this heart is for you.",
+            "It’s been 9 years, but my mom’s love is always with me.",
+            "This heart is a seed of kindness for my mom’s charity.",
+            "May my mom’s prayers give you strength too.",
+            "Each heart is a Fatiha sent to my mom’s soul.",
+            "In my mom’s memory, may your heart be filled with love.",
+            "This gift is a reflection of my mom’s compassion.",
+            "Since my mom’s passing, my prayers are with her.",
+            "Each heartbeat is a greeting to my mom’s soul.",
+            "In my mom’s memory, may this kindness reach you.",
+            "My mom’s love still guides me, even after 9 years.",
+            "This heart is a light for my mom’s soul.",
+            "My mom’s blessings are upon us all.",
+            "Each heart is a continuous charity in my mom’s memory.",
+            "For my mom’s soul, this love is a gift to you."
+        ]
+    };
+
+    function updateLanguage() {
+        document.querySelectorAll('[data-tr]').forEach(element => {
+            element.innerHTML = element.getAttribute(`data-${currentLang}`);
+        });
+        document.querySelectorAll('.score').forEach(element => {
+            const baseText = element.getAttribute(`data-${currentLang}`);
+            element.innerHTML = `${baseText} <span id="score">${score}</span>/15`;
+        });
+    }
+
+    langButton.addEventListener('click', () => {
+        currentLang = currentLang === 'tr' ? 'en' : 'tr';
+        langButton.textContent = currentLang === 'tr' ? 'English' : 'Türkçe';
+        updateLanguage();
+    });
+
+    for (let i = 0; i < 10; i++) {
         const light = document.createElement('div');
         light.classList.add('light');
         light.style.left = `${Math.random() * 100}vw`;
@@ -27,8 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.style.left = `${Math.random() * 100}vw`;
-            heart.style.top = `${Math.random() * 100}vh`;
+            heart.style.left = `${Math.random() * (window.innerWidth - 30)}px`;
+            heart.style.top = `${Math.random() * (window.innerHeight - 30)}px`;
             heart.style.animationDelay = `${Math.random() * 2}s`;
             document.body.appendChild(heart);
 
@@ -36,6 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 heart.remove();
                 score++;
                 scoreDisplay.textContent = score;
+                const randomMessage = messages[currentLang][Math.floor(Math.random() * messages[currentLang].length)];
+                messageDisplay.textContent = randomMessage;
+                messageDisplay.style.display = 'block';
                 if (score >= maxScore) {
                     showReward();
                 } else {
@@ -68,4 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(heart);
         }
     }
+
+    claimButton.addEventListener('click', () => {
+        reward.style.display = 'none';
+        claim.style.display = 'block';
+    });
+
+    document.getElementById('submitAddress').addEventListener('click', () => {
+        claim.style.display = 'none';
+    });
 });
