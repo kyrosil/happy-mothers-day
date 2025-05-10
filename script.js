@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let score = 0;
     const maxScore = 15;
     let currentLang = 'tr';
+    let animationTimeout = null; // Animasyon iptali için
 
     const messages = {
         tr: [
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
             "9 yıl oldu, ama annemin sevgisi hep içimde.",
             "Bu kalp, annemin hayrına bir iyilik tohumu.",
             "Annemin duaları sana da güç versin.",
-            "Her kalp, annemin ruhuna gönderilen bir Fatiha.",
+            " decompressHer kalp, annemin ruhuna gönderilen bir Fatiha.",
             "Annemin anısına, kalbin sevgiyle dolsun.",
             "Bu hediye, annemin merhametinin bir yansıması.",
             "Annemin gidişinden beri, dualarım onunla.",
@@ -72,6 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function typeWriter(element, text, speed, callback) {
+        // Mevcut animasyonu iptal et
+        if (animationTimeout) {
+            clearTimeout(animationTimeout);
+            animationTimeout = null;
+        }
         let i = 0;
         element.textContent = '';
         element.style.opacity = 1;
@@ -79,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
-                setTimeout(type, 50); // Hata düzeltildi
+                animationTimeout = setTimeout(type, speed);
             } else if (callback) {
                 callback();
             }
@@ -88,6 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function animateText() {
+        // Mevcut animasyonları durdur
+        if (animationTimeout) {
+            clearTimeout(animationTimeout);
+            animationTimeout = null;
+        }
         const paragraphs = document.querySelectorAll('.content p');
         let index = 0;
         function nextParagraph() {
@@ -106,14 +117,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateLanguage() {
+        // Tüm data-tr/data-en etiketlerini güncelle
         document.querySelectorAll('[data-tr]').forEach(element => {
             element.innerHTML = element.getAttribute(`data-${currentLang}`);
         });
+        // Skor metnini güncelle
         document.querySelectorAll('.score').forEach(element => {
             const baseText = element.getAttribute(`data-${currentLang}`);
             element.innerHTML = `${baseText} <span id="score">${score}</span>/15`;
         });
-        animateText();
+        // Animasyonu sıfırla ve yeniden başlat
+        if (intro.style.display !== 'none') {
+            animateText();
+        }
     }
 
     langButton.addEventListener('click', () => {
@@ -192,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Ödül mesajını ekle
         const rewardMessage = document.createElement('div');
         rewardMessage.classList.add('reward-message');
-        reward.appendChild(rewardMessage);
+        reward.insertBefore(rewardMessage, claimButton); // Butondan önce ekle
         typeWriter(rewardMessage, rewardMessages[currentLang], 50);
     }
 
@@ -202,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // USDT adresi mesajını ekle
         const claimMessage = document.createElement('div');
         claimMessage.classList.add('claim-message');
-        claim.insertBefore(claimMessage, document.getElementById('usdtAddress'));
+        claim.insertBefore(claimMessage, document.getElementById('usdtAddress')); // Input’tan önce ekle
         typeWriter(claimMessage, claimMessages[currentLang], 50);
     });
 
