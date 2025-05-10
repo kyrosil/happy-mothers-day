@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
-                setTimeout(type,の問題50);
+                setTimeout(type, 50); // Hata düzeltildi
             } else if (callback) {
                 callback();
             }
