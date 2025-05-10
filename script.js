@@ -56,6 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
         en: "A Fatiha for my mom’s soul…"
     };
 
+    const rewardMessages = {
+        tr: "Tebrikler! Annemin ve babamın anısına 15 kalbi toplayarak 100 USDT ödülünü kazandın! Her kalp, onların ruhuna bir dua, bir sevgi hediyesi. Ödülünü almak için devam et, kalbinin güzelliği bizimle! 🤍",
+        en: "Congratulations! By collecting 15 hearts in memory of my mom and dad, you’ve won a 100 USDT reward! Each heart is a prayer, a gift of love to their souls. Proceed to claim your reward, your beautiful heart is with us! 🤍"
+    };
+
+    const claimMessages = {
+        tr: "Teşekkürler! Annemin ve babamın anısına bu oyunu oynadığın için çok mutluyum. 100 USDT ödülün, onların ruhuna bir hediye oldu. Lütfen USDT adresini aşağıya gir, ödülün 24 saat içinde gönderilecek. Kalbinin güzelliği için sonsuz teşekkürler… 🤍",
+        en: "Thank you! I’m so happy you played this game in memory of my mom and dad. Your 100 USDT reward is a gift to their souls. Please enter your USDT address below, and your reward will be sent within 24 hours. Endless thanks for your beautiful heart… 🤍"
+    };
+
+    const endMessages = {
+        tr: "Teşekkürler! Annemin ve babamın ruhuna bir dua daha gönderdin. 100 USDT ödülün 24 saat içinde adresine ulaşacak. Onların sevgisi kalbimizde yaşıyor, seninle bu yolculuğu paylaştığım için minnettarım! 🤍",
+        en: "Thank you! You’ve sent another prayer to my mom and dad’s souls. Your 100 USDT reward will reach your address within 24 hours. Their love lives in our hearts, and I’m grateful for sharing this journey with you! 🤍"
+    };
+
     function typeWriter(element, text, speed, callback) {
         let i = 0;
         element.textContent = '';
@@ -64,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
-                setTimeout(type, speed);
+                setTimeout(type,の問題50);
             } else if (callback) {
                 callback();
             }
@@ -174,11 +189,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function showReward() {
         document.querySelectorAll('.heart').forEach(heart => heart.remove());
         reward.style.display = 'block';
+        // Ödül mesajını ekle
+        const rewardMessage = document.createElement('div');
+        rewardMessage.classList.add('reward-message');
+        reward.appendChild(rewardMessage);
+        typeWriter(rewardMessage, rewardMessages[currentLang], 50);
     }
 
     claimButton.addEventListener('click', () => {
         reward.style.display = 'none';
         claim.style.display = 'block';
+        // USDT adresi mesajını ekle
+        const claimMessage = document.createElement('div');
+        claimMessage.classList.add('claim-message');
+        claim.insertBefore(claimMessage, document.getElementById('usdtAddress'));
+        typeWriter(claimMessage, claimMessages[currentLang], 50);
     });
 
     submitButton.addEventListener('click', () => {
@@ -187,6 +212,11 @@ document.addEventListener('DOMContentLoaded', () => {
             claim.style.display = 'none';
             finalMessage.style.display = 'block';
             document.querySelectorAll('.heart, .light, .star-dust').forEach(el => el.remove()); // Tüm efektleri temizle
+            // Kapanış mesajını ekle
+            const endMessage = document.createElement('div');
+            endMessage.classList.add('end-message');
+            finalMessage.appendChild(endMessage);
+            typeWriter(endMessage, endMessages[currentLang], 50);
         }
     });
 });
