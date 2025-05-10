@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }
-        paragraphs.forEach(p => p.style.opacity = 0);
+        paragraphs.forEach(p => p.textContent = '');
         nextParagraph();
     }
 
