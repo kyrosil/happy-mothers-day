@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateLanguage();
     });
 
-    for (let i = 0; i < 50; i++) { // Artırdık ki daha belirgin olsun
+    for (let i = 0; i < 50; i++) {
         const star = document.createElement('div');
         star.classList.add('star-dust');
         star.style.left = `${Math.random() * 100}vw`;
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(star);
     }
 
-    for (let i = 0; i < 20; i++) { // Artırdık ki daha çok ışık olsun
+    for (let i = 0; i < 20; i++) {
         const light = document.createElement('div');
         light.classList.add('light');
         light.style.left = `${Math.random() * 100}vw`;
