@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const reward = document.getElementById('reward');
     const claim = document.getElementById('claim');
     const claimButton = document.getElementById('claimReward');
+    const submitButton = document.getElementById('submitAddress');
+    const finalMessage = document.getElementById('finalMessage');
     const langButton = document.getElementById('langBtn');
     let score = 0;
     const maxScore = 15;
@@ -80,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     index++;
                     nextParagraph();
                 });
+            } else {
+                intro.style.overflowY = 'auto'; // Metin bittiğinde kaydırma aktif
             }
         }
         paragraphs.forEach(p => p.textContent = '');
@@ -170,23 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function showReward() {
         document.querySelectorAll('.heart').forEach(heart => heart.remove());
         reward.style.display = 'block';
-        for (let i = 0; i < 20; i++) {
-            const burst = document.createElement('div');
-            burst.classList.add('light');
-            burst.style.left = '50%';
-            burst.style.top = '50%';
-            burst.style.animation = 'lightBurst 1s ease-in-out';
-            burst.style.animationDelay = `${i * 0.1}s`;
-            document.body.appendChild(burst);
-        }
-        for (let i = 0; i < 20; i++) {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.style.left = `${Math.random() * 100}vw`;
-            heart.style.top = `${Math.random() * 100}vh`;
-            heart.style.animationDelay = `${Math.random() * 2}s`;
-            document.body.appendChild(heart);
-        }
     }
 
     claimButton.addEventListener('click', () => {
@@ -194,7 +181,12 @@ document.addEventListener('DOMContentLoaded', () => {
         claim.style.display = 'block';
     });
 
-    document.getElementById('submitAddress').addEventListener('click', () => {
-        claim.style.display = 'none';
+    submitButton.addEventListener('click', () => {
+        const usdtAddress = document.getElementById('usdtAddress').value;
+        if (usdtAddress) {
+            claim.style.display = 'none';
+            finalMessage.style.display = 'block';
+            document.querySelectorAll('.heart, .light, .star-dust').forEach(el => el.remove()); // Tüm efektleri temizle
+        }
     });
 });
