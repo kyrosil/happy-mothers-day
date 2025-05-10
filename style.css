@@ -76,12 +76,20 @@ h1 {
     border: 2px solid #fff;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease;
     animation: pulse 2s infinite ease-in-out;
     margin: 1rem 0;
     min-width: 200px;
 }
 .start-btn:hover, #claimReward:hover {
+    transform: scale(1.1);
+}
+#claimReward {
+    background: #4a2c2a; /* Koyu kahverengi, daha görünür */
+    border: 2px solid #fff;
+}
+#claimReward:hover {
+    background: #6b4e4a; /* Hover’da biraz daha açık */
     transform: scale(1.1);
 }
 .dark-btn {
